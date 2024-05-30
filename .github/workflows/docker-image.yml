@@ -6,13 +6,12 @@ on:
   pull_request:
     branches: [ "master" ]
 
+env:
+  VERSION: ${{ latest }}
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag ylin94/python_dev:${{ secrets.VERSION }}
+      run: docker build . --file Dockerfile --tag ylin94/python_dev:${{ env.VERSION }}
