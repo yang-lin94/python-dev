@@ -8,22 +8,14 @@ on:
 
 env:
   VERSION: latest
-
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v4
+
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag ylin94/python_dev:${{ env.VERSION }}
-
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build  # 這意味著 deploy 階段會在 build 階段成功後運行
-
-    steps:
-    - uses: actions/checkout@v4  # 檢出代碼，以便獲取最新的 Dockerfile 等文件
 
     - name: Log in to Docker Hub
       run: echo "${{ secrets.DOCKER_HUB_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_HUB_USERNAME }}" --password-stdin
