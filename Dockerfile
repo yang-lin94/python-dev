@@ -1,6 +1,6 @@
 FROM python:3.11-bookworm
 
-RUN apt-get update && apt-upgrade && apt-get install -y \
+RUN apt-get update && apt-get upgrade && apt-get install -y \
     build-essential \
     libpq-dev \
     zsh\
